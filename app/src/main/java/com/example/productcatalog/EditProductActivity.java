@@ -13,7 +13,7 @@ import java.util.List;
 public class EditProductActivity extends Activity {
     private static final int PICK_IMAGE = 200;
     private DatabaseHelper database;
-    private EditText skuInput, nameInput, stockInput;
+    private EditText nameInput, stockInput;
     private Spinner categorySpinner;
     private CheckBox activeCheck;
     private ImageView productImage;
@@ -27,7 +27,8 @@ public class EditProductActivity extends Activity {
         database = new DatabaseHelper(this);
         productId = getIntent().getLongExtra("product_id", -1);
 
-        skuInput = findViewById(R.id.skuInput);
+        setTitle(productId == -1 ? "Новый товар" : "Редактирование товара");
+
         nameInput = findViewById(R.id.nameInput);
         stockInput = findViewById(R.id.stockInput);
         categorySpinner = findViewById(R.id.categorySpinner);
@@ -63,7 +64,6 @@ public class EditProductActivity extends Activity {
             finish();
             return;
         }
-        skuInput.setText(p.sku);
         nameInput.setText(p.name);
         stockInput.setText(String.valueOf(p.stock));
         activeCheck.setChecked(p.active);
@@ -77,6 +77,9 @@ public class EditProductActivity extends Activity {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
+        // Флаг постоянных прав — чтобы выбранное фото открывалось после перезапуска приложения.
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
         startActivityForResult(intent, PICK_IMAGE);
     }
 
@@ -105,12 +108,11 @@ public class EditProductActivity extends Activity {
     }
 
     private void saveProduct() {
-        String sku = skuInput.getText().toString().trim();
         String name = nameInput.getText().toString().trim();
         String stockValue = stockInput.getText().toString().trim();
 
-        if (sku.isEmpty() || name.isEmpty() || stockValue.isEmpty()) {
-            Toast.makeText(this, "Заполните артикул, название и остаток", Toast.LENGTH_SHORT).show();
+        if (name.isEmpty() || stockValue.isEmpty()) {
+            Toast.makeText(this, "Заполните название и остаток", Toast.LENGTH_SHORT).show();
             return;
         }
         if (categorySpinner.getSelectedItem() == null) {
@@ -128,15 +130,14 @@ public class EditProductActivity extends Activity {
             return;
         }
 
-        boolean saved = database.saveProduct(productId, sku, name,
+        boolean saved = database.saveProduct(productId, name,
                 categorySpinner.getSelectedItem().toString(), stock,
                 activeCheck.isChecked(), imageUri);
         if (saved) {
             Toast.makeText(this, "Товар сохранён", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(this, "Не удалось сохранить. Проверьте, не занят ли артикул.",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Не удалось сохранить товар", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -146,6 +147,7 @@ public class EditProductActivity extends Activity {
                 .setMessage("Вы действительно хотите удалить этот товар?")
                 .setPositiveButton("Удалить", (dialog, which) -> {
                     database.deleteProduct(productId);
+                    Toast.makeText(this, "Товар удалён", Toast.LENGTH_SHORT).show();
                     finish();
                 })
                 .setNegativeButton("Отмена", null)

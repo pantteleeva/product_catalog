@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoryFilter.setAdapter(categoryAdapter);
 
-        String[] sorts = {"Название", "Артикул", "Количество"};
+        String[] sorts = {"Название", "Количество"};
         ArrayAdapter<String> sortAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, sorts);
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

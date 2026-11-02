@@ -20,16 +20,6 @@
             android:paddingBottom="12dp" />
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Артикул (ID)" />
-        <EditText
-            android:id="@+id/skuInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Например, EL-004"
-            android:singleLine="true"
-            android:inputType="text" />
-
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="Название товара" />
         <EditText
             android:id="@+id/nameInput"

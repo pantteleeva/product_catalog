@@ -38,8 +38,7 @@ public class ProductAdapter extends BaseAdapter {
         ImageView image = view.findViewById(R.id.productThumbnail);
 
         name.setText(product.name);
-        details.setText("Артикул: " + product.sku + " • " + product.category +
-                " • Остаток: " + product.stock);
+        details.setText(product.category + " • Остаток: " + product.stock);
         status.setText(product.active ? "Активна" : "Неактивна");
 
         image.setImageResource(android.R.drawable.ic_menu_gallery);
