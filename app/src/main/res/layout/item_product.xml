@@ -36,7 +36,7 @@
             android:id="@+id/productDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Артикул • Категория • Остаток"
+            android:text="Категория • Остаток"
             android:textColor="#626B7A"
             android:textSize="13sp"
             android:paddingTop="4dp" />

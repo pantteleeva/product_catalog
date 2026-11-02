@@ -19,7 +19,7 @@
         android:id="@+id/searchInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Поиск по названию или артикулу"
+        android:hint="Поиск по названию"
         android:singleLine="true"
         android:inputType="text"
         android:padding="12dp" />
