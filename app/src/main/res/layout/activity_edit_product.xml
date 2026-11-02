@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Карточка товара"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#202638"
+            android:paddingBottom="12dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Артикул (ID)" />
+        <EditText
+            android:id="@+id/skuInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Например, EL-004"
+            android:singleLine="true"
+            android:inputType="text" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Название товара" />
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название"
+            android:singleLine="true"
+            android:inputType="textCapSentences" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Категория" />
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Количество на складе" />
+        <EditText
+            android:id="@+id/stockInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:singleLine="true" />
+
+        <CheckBox
+            android:id="@+id/activeCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Страница товара активна"
+            android:checked="true" />
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginTop="10dp"
+            android:background="#E1E5EC"
+            android:contentDescription="Фото товара"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_gallery" />
+
+        <Button
+            android:id="@+id/chooseImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выбрать фото"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/saveProductButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/deleteProductButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Удалить товар"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Назад"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>
